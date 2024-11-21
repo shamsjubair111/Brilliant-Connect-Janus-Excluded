@@ -34,6 +34,9 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Completable;
 import io.reactivex.annotations.NonNull;
@@ -411,7 +414,38 @@ public class ChatFragment extends AbstractChatFragment implements ChatView.Deleg
             handleMessageSend(ChatSDK.thread().replyToMessage(thread, holder.getMessage(), text.trim()));
             hideReplyView();
         } else {
-            handleMessageSend(ChatSDK.thread().sendMessageWithText(text.trim(), thread));
+//            handleMessageSend(ChatSDK.thread().sendMessageWithText(text.trim(), thread));
+            String[] parts = text.split(" ");  // Split input into parts
+
+// Assign to variables
+            int message = Integer.parseInt(parts[0]); // First value as Integer
+            int delay = Integer.parseInt(parts[1]); // Second value as Integer
+            final int[] count = {1};  // Initialize count to 1 (because the first message is 1)
+
+// Use a ScheduledExecutorService to schedule tasks
+            ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+// Define the task to be executed
+            Runnable task = new Runnable() {
+                @Override
+                public void run() {
+                    // Check if the count is less than or equal to the number of messages
+                    if (count[0] <= message) {
+                        // Send message (using the count[0] to send messages like 1, 2, 3, etc.)
+                        handleMessageSend(ChatSDK.thread().sendMessageWithText(String.valueOf(count[0]), thread));
+
+                        // Increment the count
+                        count[0]++;
+                    } else {
+                        // Once all messages are sent, shut down the scheduler
+                        scheduler.shutdown();
+                    }
+                }
+            };
+
+// Schedule the task with an initial delay of 0 and a fixed rate of 'delay' milliseconds
+            scheduler.scheduleAtFixedRate(task, 0, delay, TimeUnit.MILLISECONDS);
+
         }
 
     }

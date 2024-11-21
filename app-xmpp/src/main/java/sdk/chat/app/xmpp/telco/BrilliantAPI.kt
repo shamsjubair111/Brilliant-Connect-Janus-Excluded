@@ -18,7 +18,7 @@ class BrilliantAPI {
     var otp: String? = null
     var to: String? = null
     var url = "https://appsrv.intercloud.com.bd/test/api/VendorOTP/SendOTP"
-    var xmppURL = "http://103.248.13.76:5443/api/register"//"http://36.255.71.143:5443/api/register"
+    var xmppURL = "http://103.209.42.15:5443/api/register"//"http://36.255.71.143:5443/api/register"
     var freeswitchURL = "http://103.248.13.73:5070"
 
     public fun sendOTP(to: String): Completable {
