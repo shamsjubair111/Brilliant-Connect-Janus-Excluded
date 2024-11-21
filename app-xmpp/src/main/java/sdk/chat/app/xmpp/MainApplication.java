@@ -84,7 +84,7 @@ public class MainApplication extends Application {
 
                     .addModule(XMPPModule.builder()
 //                            .setXMPP("75.119.138.93", "xmpp.app", 5222)
-//                          .setXMPP("36.255.71.143", "localhost", 5222)
+//                          .setXMPP("36.255.71.143", "localhost", 5224)
                           .setXMPP("103.248.13.76", "localhost", 5222)
                             .setSecurityMode("disabled")
                             .setAllowServerConfiguration(false)

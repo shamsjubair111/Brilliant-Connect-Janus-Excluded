@@ -21,9 +21,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.codewithkael.webrtcprojectforrecord.AppToAppCall;
-import com.codewithkael.webrtcprojectforrecord.AppToAppVideo;
-import com.codewithkael.webrtcprojectforrecord.ReceiverActivity;
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -37,6 +35,7 @@ import sdk.chat.core.dao.Keys;
 import sdk.chat.core.push.BroadcastHandler;
 import sdk.chat.core.session.ChatSDK;
 import sdk.chat.ui.IncomingCallActivity;
+import sdk.chat.ui.ReceiverActivity;
 
 public class DefaultMessagingService extends FirebaseMessagingService {
 
@@ -118,44 +117,44 @@ public class DefaultMessagingService extends FirebaseMessagingService {
             notificationManager.cancel(100001);
             ChatSDK.mediaStop();
             IncomingCallActivity incomingCallActivity = (IncomingCallActivity) ChatSDK.callActivities.get("incomingCallActivity");
-            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
-            AppToAppVideo appToAppVideoActivity = (AppToAppVideo) ChatSDK.callActivities.get("AppToAppVideo");
+//            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
+//            AppToAppVideo appToAppVideoActivity = (AppToAppVideo) ChatSDK.callActivities.get("AppToAppVideo");
             ReceiverActivity receiverActivity = (ReceiverActivity) ChatSDK.callActivities.get("ReceiverActivity");
             if (incomingCallActivity != null) {
                 incomingCallActivity.finishAndRemoveTask();
             }
-            if (appToAppCallActivity != null) {
-                appToAppCallActivity.finish();
-            }
-            if (appToAppVideoActivity != null) {
-                appToAppVideoActivity.finish();
-            }
+//            if (appToAppCallActivity != null) {
+//                appToAppCallActivity.finish();
+//            }
+//            if (appToAppVideoActivity != null) {
+//                appToAppVideoActivity.finish();
+//            }
             if (receiverActivity != null) {
                 receiverActivity.finishAndRemoveTask();
             }
 
         }
-        else if (messageType.equals("received")) {
-            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
-            AppToAppVideo appToAppVideoActivity = (AppToAppVideo) ChatSDK.callActivities.get("AppToAppVideo");
-            if (appToAppCallActivity != null) {
-                AppToAppCall.onReceived();
-            } else if (appToAppVideoActivity != null) {
-                AppToAppVideo.onReceived();
-            }
-        }
-        else if (messageType.equals("ringing")) {
-            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
-            if (appToAppCallActivity != null) {
-                AppToAppCall.onRinging();
-            }
-        }
-        else if (messageType.equals("noResponse")) {
-            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
-            if (appToAppCallActivity != null) {
-                appToAppCallActivity.finish();
-            }
-        }
+//        else if (messageType.equals("received")) {
+//            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
+//            AppToAppVideo appToAppVideoActivity = (AppToAppVideo) ChatSDK.callActivities.get("AppToAppVideo");
+//            if (appToAppCallActivity != null) {
+//                AppToAppCall.onReceived();
+//            } else if (appToAppVideoActivity != null) {
+//                AppToAppVideo.onReceived();
+//            }
+//        }
+//        else if (messageType.equals("ringing")) {
+//            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
+//            if (appToAppCallActivity != null) {
+//                AppToAppCall.onRinging();
+//            }
+//        }
+//        else if (messageType.equals("noResponse")) {
+//            AppToAppCall appToAppCallActivity = (AppToAppCall) ChatSDK.callActivities.get("AppToAppCall");
+//            if (appToAppCallActivity != null) {
+//                appToAppCallActivity.finish();
+//            }
+//        }
         else {
             if (ChatSDK.shared().isValid() && !ChatSDK.config().manualPushHandlingEnabled) {
                 for (BroadcastHandler handler : ChatSDK.shared().broadcastHandlers()) {

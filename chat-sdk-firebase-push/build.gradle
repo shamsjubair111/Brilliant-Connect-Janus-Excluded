@@ -50,7 +50,7 @@ dependencies {
     implementation "com.google.firebase:firebase-messaging"
     implementation "com.google.firebase:firebase-functions"
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
-    implementation project(path: ':janus')
+//    implementation project(path: ':janus')
 //    implementation files('../chat-sdk-app-telcobright/libs/wcs-android-sdk-1.1.0.61.aar')
 
 }

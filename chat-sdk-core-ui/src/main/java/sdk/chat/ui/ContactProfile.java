@@ -13,8 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.codewithkael.webrtcprojectforrecord.AppToAppCall;
-import com.codewithkael.webrtcprojectforrecord.OutgoingCall;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,31 +88,31 @@ public class ContactProfile extends AppCompatActivity implements Consumer<Throwa
         receiverNumber = validPhoneNumber(getIntent().getStringExtra("contactNumber"));
 
 
-        apptoappVideoCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (getIntent().getStringExtra("registered").equals("yes")) {
-
-                    if(ChatSDK.auth().getCurrentUserEntityID()!=null) {
-                        Intent intent = new Intent(getApplicationContext(), AppToAppCall.class);
-                        intent.putExtra("receiverNumber", receiverNumber);
-                        intent.putExtra("type", "video");
-                        intent.putExtra("contactName", receiverName);
-                        intent.putExtra("photo", contactImage);
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(ContactProfile.this, "Please try again later", Toast.LENGTH_SHORT).show();
-                    }
-
-                } else {
-                    Toast.makeText(ContactProfile.this, "Number Not Registered", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        apptoappVideoCall.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                if (getIntent().getStringExtra("registered").equals("yes")) {
+//
+//                    if(ChatSDK.auth().getCurrentUserEntityID()!=null) {
+//                        Intent intent = new Intent(getApplicationContext(), AppToAppCall.class);
+//                        intent.putExtra("receiverNumber", receiverNumber);
+//                        intent.putExtra("type", "video");
+//                        intent.putExtra("contactName", receiverName);
+//                        intent.putExtra("photo", contactImage);
+//                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+//                    }
+//                    else{
+//                        Toast.makeText(ContactProfile.this, "Please try again later", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                } else {
+//                    Toast.makeText(ContactProfile.this, "Number Not Registered", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
 
         apptoappMessage.setOnClickListener(new View.OnClickListener() {
@@ -134,50 +133,50 @@ public class ContactProfile extends AppCompatActivity implements Consumer<Throwa
             }
         });
 
-        AppToAppCallCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getIntent().getStringExtra("registered").equals("yes")) {
+//        AppToAppCallCall.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (getIntent().getStringExtra("registered").equals("yes")) {
+//
+//                    if(ChatSDK.auth().getCurrentUserEntityID()!=null) {
+//                        Intent intent = new Intent(getApplicationContext(), AppToAppCall.class);
+//                        intent.putExtra("receiverNumber", receiverNumber);
+//                        intent.putExtra("type", "audio");
+//                        intent.putExtra("contactName", receiverName);
+//                        intent.putExtra("photo", contactImage);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        intent.setAction(Intent.ACTION_MAIN);
+//                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                        startActivity(intent);
+//                    }
+//                    else{
+//                        Toast.makeText(ContactProfile.this, "Please try again later", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(ContactProfile.this, "Number Not Registered", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
-                    if(ChatSDK.auth().getCurrentUserEntityID()!=null) {
-                        Intent intent = new Intent(getApplicationContext(), AppToAppCall.class);
-                        intent.putExtra("receiverNumber", receiverNumber);
-                        intent.putExtra("type", "audio");
-                        intent.putExtra("contactName", receiverName);
-                        intent.putExtra("photo", contactImage);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.setAction(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(ContactProfile.this, "Please try again later", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(ContactProfile.this, "Number Not Registered", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
-
-        directCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(ChatSDK.auth().getCurrentUserEntityID()!=null) {
-                    Intent intent = new Intent(ContactProfile.this, OutgoingCall.class);
-                    intent.putExtra("receiverNumber", receiverNumber);
-                    intent.putExtra("activityName", "ContactProfile");
-                    intent.putExtra("contactName", receiverName);
-                    intent.putExtra("photo", contactImage);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(ContactProfile.this, "Please try again later", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        directCall.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if(ChatSDK.auth().getCurrentUserEntityID()!=null) {
+//                    Intent intent = new Intent(ContactProfile.this, OutgoingCall.class);
+//                    intent.putExtra("receiverNumber", receiverNumber);
+//                    intent.putExtra("activityName", "ContactProfile");
+//                    intent.putExtra("contactName", receiverName);
+//                    intent.putExtra("photo", contactImage);
+//                    startActivity(intent);
+//                }
+//                else{
+//                    Toast.makeText(ContactProfile.this, "Please try again later", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
 
         backImage.setOnClickListener(new View.OnClickListener() {

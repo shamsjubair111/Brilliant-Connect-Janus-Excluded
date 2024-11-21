@@ -43,5 +43,5 @@ include 'app-xmpp',
         'vendor-chatkit',
         'chat-sdk-vendor',
         'vendor-android-audio-recorder',
-        'chat-sdk-app-telcobright',
-        'janus'
+        'chat-sdk-app-telcobright'
+

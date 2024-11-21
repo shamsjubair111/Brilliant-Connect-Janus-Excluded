@@ -1,6 +1,6 @@
 package sdk.chat.app.xmpp.telco
 
-import CallRecordAdapter
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
@@ -14,8 +14,7 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codewithkael.webrtcprojectforrecord.CallRecord
-import com.codewithkael.webrtcprojectforrecord.SQLiteCallFragmentHelper
+
 import com.lassi.common.utils.Logger
 import sdk.chat.core.session.ChatSDK
 import sdk.chat.demo.xmpp.R
@@ -27,11 +26,11 @@ import kotlinx.coroutines.*
 class BrilliantCallsFragment : BaseFragment(), SearchSupported {
     private lateinit var recyclerViewCalls: RecyclerView
     private lateinit var fab: ImageView
-    private lateinit var adapter: CallRecordAdapter
+//    private lateinit var adapter: CallRecordAdapter
 
     private var networkCallback: ConnectivityManager.NetworkCallback? = null
-    private var allRecords: List<CallRecord> = mutableListOf()
-    private var filteredContacts: MutableList<CallRecord> = mutableListOf()
+//    private var allRecords: List<CallRecord> = mutableListOf()
+//    private var filteredContacts: MutableList<CallRecord> = mutableListOf()
 
     override fun getLayout(): Int {
         return R.layout.fragment_brilliant_calls
@@ -59,8 +58,8 @@ class BrilliantCallsFragment : BaseFragment(), SearchSupported {
 
     private fun setupRecyclerView() {
         recyclerViewCalls.layoutManager = LinearLayoutManager(requireContext())
-        adapter = CallRecordAdapter(requireContext(), filteredContacts)
-        recyclerViewCalls.adapter = adapter
+//        adapter = CallRecordAdapter(requireContext(), filteredContacts)
+//        recyclerViewCalls.adapter = adapter
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -100,8 +99,8 @@ class BrilliantCallsFragment : BaseFragment(), SearchSupported {
     }
 
     override fun clearData() {
-        filteredContacts.clear()
-        updateAdapter(filteredContacts)
+//        filteredContacts.clear()
+//        updateAdapter(filteredContacts)
     }
 
     override fun reloadData() {
@@ -110,11 +109,11 @@ class BrilliantCallsFragment : BaseFragment(), SearchSupported {
 
     override fun filter(text: String?) {
         if (text != null) {
-            filteredContacts = allRecords.filter { contact ->
-                contact.name?.lowercase(Locale.getDefault())
-                    ?.contains(text.lowercase(Locale.getDefault())) == true
-            }.toMutableList()
-            updateAdapter(filteredContacts)
+//            filteredContacts = allRecords.filter { contact ->
+//                contact.name?.lowercase(Locale.getDefault())
+//                    ?.contains(text.lowercase(Locale.getDefault())) == true
+//            }.toMutableList()
+//            updateAdapter(filteredContacts)
         }
     }
 
@@ -135,28 +134,28 @@ class BrilliantCallsFragment : BaseFragment(), SearchSupported {
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            val sqLiteCallFragmentHelper = context?.let { SQLiteCallFragmentHelper(it) }
-            sqLiteCallFragmentHelper?.let {
-                allRecords = it.allRecords
-                Logger.d("LoadData", "Fetched ${allRecords.size} records")
-
-                withContext(Dispatchers.Main) {
-                    if (isAdded) { // Ensure fragment is still attached
-                        updateAdapter(allRecords)
-                    }
-                }
-            } ?: run {
-                Logger.d("LoadData", "SQLiteCallFragmentHelper is null")
-            }
+//            val sqLiteCallFragmentHelper = context?.let { SQLiteCallFragmentHelper(it) }
+//            sqLiteCallFragmentHelper?.let {
+//                allRecords = it.allRecords
+//                Logger.d("LoadData", "Fetched ${allRecords.size} records")
+//
+//                withContext(Dispatchers.Main) {
+//                    if (isAdded) { // Ensure fragment is still attached
+//                        updateAdapter(allRecords)
+//                    }
+//                }
+//            } ?: run {
+//                Logger.d("LoadData", "SQLiteCallFragmentHelper is null")
+//            }
         }
     }
 
-    private fun updateAdapter(records: List<CallRecord>) {
-        if (isAdded && ::adapter.isInitialized && recyclerViewCalls.layoutManager != null) {
-            Logger.d("UpdateAdapter", "Updating adapter with ${records.size} records")
-            adapter.updateData(records)
-        } else {
-            Logger.d("UpdateAdapter", "Skipping update: Adapter not initialized or Fragment not attached")
-        }
-    }
+//    private fun updateAdapter(records: List<CallRecord>) {
+//        if (isAdded && ::adapter.isInitialized && recyclerViewCalls.layoutManager != null) {
+//            Logger.d("UpdateAdapter", "Updating adapter with ${records.size} records")
+//            adapter.updateData(records)
+//        } else {
+//            Logger.d("UpdateAdapter", "Skipping update: Adapter not initialized or Fragment not attached")
+//        }
+//    }
 }

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.codewithkael.webrtcprojectforrecord.ReceiverActivity;
+
 
 import notification.NotificationCancelActivity;
 import sdk.chat.core.session.ChatSDK;
